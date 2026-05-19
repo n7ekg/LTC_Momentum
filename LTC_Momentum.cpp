@@ -12,22 +12,23 @@ SCSFExport scsf_LTC_Momentum(SCStudyInterfaceRef sc)
 
     if (sc.SetDefaults)
     {
-        sc.GraphName = "LTC Momentum";
+        sc.GraphName = "LTC Momentum 1.2";
         sc.AutoLoop = 1;
-	sc.GraphRegion = 0;
+	    sc.GraphRegion = 0;
+	    sc.GraphUsesChartColors = 0;
 
         BarColor.Name = "Chop Bar Color";
-        BarColor.DrawStyle = DRAWSTYLE_COLOR_BAR;
+        BarColor.DrawStyle = DRAWSTYLE_COLOR_BAR_CANDLE_FILL;
         BarColor.PrimaryColor = RGB(255,255,255); // Default White
         BarColor.DrawZeros = false;
 
         LongBarColor.Name = "Long Bar Color";
-        LongBarColor.DrawStyle = DRAWSTYLE_COLOR_BAR;
+        LongBarColor.DrawStyle = DRAWSTYLE_COLOR_BAR_CANDLE_FILL;
         LongBarColor.PrimaryColor = RGB(0,255,0); // Green
         LongBarColor.DrawZeros = false;
 
         ShortBarColor.Name = "Short Bar Color";
-        ShortBarColor.DrawStyle = DRAWSTYLE_COLOR_BAR;
+        ShortBarColor.DrawStyle = DRAWSTYLE_COLOR_BAR_CANDLE_FILL;
         ShortBarColor.PrimaryColor = RGB(255,0,0); // Red
         ShortBarColor.DrawZeros = false;
 
@@ -74,6 +75,17 @@ SCSFExport scsf_LTC_Momentum(SCStudyInterfaceRef sc)
     // Default color = White
     BarColor[i] = 1;
     BarColor.DataColor[i] = BarColor.PrimaryColor;
+    /*
+    if (currentClose > currentOpen)
+    {
+		BarColor.SecondaryColor[i] = LongBarColor.PrimaryColor;
+	}
+	else
+	{
+		BarColor.SecondaryColor[i] = ShortBarColor.PrimaryColor;
+	}
+	BarColor.SecondaryColorUsed[i] = 1;
+	*/
     BarState[i] = 0; // Chop
     Line50[i] = 0; // 50% line, true/false
 
